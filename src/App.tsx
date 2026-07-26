@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BookOpen, Moon, Sun, PenTool } from 'lucide-react';
+import { BookOpen, Moon, Sun, PenTool, Github } from 'lucide-react';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { usePromptGenerator } from './hooks/usePromptGenerator';
 import { useIntersectionObserver } from './hooks/useIntersectionObserver';
@@ -127,27 +127,55 @@ export default function App() {
       <header className="px-6 py-4 flex justify-between items-center border-b border-border-subtle bg-bg-main relative z-20">
         <div className="flex items-center gap-2 font-serif text-xl font-medium tracking-tight">
           <BookOpen className="w-5 h-5 text-accent" />
-          Product Design Dictionary
+          TasteOS
         </div>
         
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
           <a href="#recipes" className="hover:text-accent transition-colors">Recipes</a>
           <a href="#inspiration" className="hover:text-accent transition-colors">Inspiration</a>
           <a href="#glossary" className="hover:text-accent transition-colors">Glossary</a>
+          <div className="h-4 w-[1px] bg-border-subtle mx-2" />
+          <a 
+            href="https://github.com/ani212/TasteOS" 
+            target="_blank" 
+            rel="noreferrer"
+            className="flex items-center gap-2 hover:text-text-primary text-text-secondary transition-colors"
+          >
+            <Github className="w-5 h-5" />
+          </a>
           <button 
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-            className="p-2 rounded-full bg-bg-secondary hover:bg-border-subtle transition-colors ml-2"
+            className="relative inline-flex h-7 w-12 items-center rounded-full bg-border-subtle hover:bg-border-strong transition-colors ml-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            aria-label="Toggle dark mode"
+          >
+            <span className="sr-only">Toggle dark mode</span>
+            <span
+              className={cn(
+                "inline-block h-5 w-5 transform rounded-full bg-bg-main transition duration-200 ease-in-out flex items-center justify-center",
+                theme === 'dark' ? "translate-x-6" : "translate-x-1"
+              )}
+            >
+              {theme === 'dark' ? <Moon className="w-3 h-3 text-text-primary" /> : <Sun className="w-3 h-3 text-text-primary" />}
+            </span>
+          </button>
+        </div>
+        
+        <div className="flex md:hidden items-center gap-4">
+          <a 
+            href="https://github.com/ani212/TasteOS" 
+            target="_blank" 
+            rel="noreferrer"
+            className="text-text-secondary"
+          >
+            <Github className="w-5 h-5" />
+          </a>
+          <button 
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            className="p-2 rounded-full bg-bg-secondary"
           >
             {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </button>
         </div>
-        
-        <button 
-          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          className="md:hidden p-2 rounded-full bg-bg-secondary"
-        >
-          {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-        </button>
       </header>
 
       {/* Sticky Navigation */}
@@ -176,7 +204,7 @@ export default function App() {
         {/* Hero Section */}
         <section id="start" className="max-w-4xl pt-12 md:pt-20">
           <p className="font-mono text-sm uppercase tracking-widest text-accent font-bold mb-6">
-            DESIGN DICTIONARY · GOOD TASTE ON DEMAND
+            TASTEOS · GOOD TASTE ON DEMAND
           </p>
           <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] mb-8 text-balance">
             You do not lack taste. <br className="hidden md:block"/>
@@ -573,7 +601,7 @@ export default function App() {
       <footer className="bg-bg-secondary border-t border-border-subtle py-16 px-6 pb-32 md:pb-40">
         <div className="max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2 space-y-4">
-            <div className="font-serif text-xl font-medium">Product Design Dictionary</div>
+            <div className="font-serif text-xl font-medium">TasteOS</div>
             <p className="text-text-secondary max-w-md">
               A comprehensive interactive design-reference website helping creators describe the visual direction of their products.
             </p>
