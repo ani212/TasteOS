@@ -1,32 +1,19 @@
-# React + TypeScript + Vite
+# TasteOS
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**The Operating System for Product Taste**
 
-Currently, two official plugins are available:
+TasteOS is an AI-powered design intelligence platform built for Product Managers, founders, designers, and developers who use AI to build digital products.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The platform transforms subjective ideas into structured design direction by combining an interactive design dictionary, visual references, prompt generation, and reusable design systems. Users can explore design styles, typography, layouts, color palettes, motion, and component patterns before generating AI-ready design briefs for tools like Gemini, Claude, Cursor, Lovable, Bolt, Vercel v0, and Google Antigravity.
 
-## React Compiler
+The idea came from a recurring problem I faced while building AI products: the challenge wasn't generating interfaces—it was communicating design intent. TasteOS bridges that gap by giving builders the vocabulary and framework needed to create consistent, high-quality interfaces with AI.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Highlights
+- **Interactive Design Vocabulary**
+- **AI Design Prompt Generator**
+- **Live Prompt Builder**
+- **Curated Design Recipes**
+- **Responsive Light & Dark Themes**
+- **Keyboard-first User Experience**
+- **Modern Design System**
+- **AI Workflow Integration**
