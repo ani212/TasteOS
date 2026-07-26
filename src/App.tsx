@@ -53,7 +53,7 @@ export default function App() {
   const generatedPrompt = usePromptGenerator(selectedIds);
   const [editedPrompt, setEditedPrompt] = useState('');
 
-  const activeSectionId = useIntersectionObserver(SECTIONS.map(s => s.id), 150);
+  const activeSectionId = useIntersectionObserver(SECTIONS.map(s => s.id));
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -106,9 +106,12 @@ export default function App() {
     setSelectedIds([]);
   };
 
+  const [ariaMessage, setAriaMessage] = useState('');
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    // Could add global toast here
+    setAriaMessage('Prompt copied to clipboard');
+    setTimeout(() => setAriaMessage(''), 3000);
   };
 
   return (
@@ -161,10 +164,10 @@ export default function App() {
         </ul>
       </nav>
 
-      <main className="max-w-[1240px] mx-auto px-6 sm:px-12 py-12 md:py-24 space-y-32">
+      <main className="max-w-[1240px] mx-auto px-6 sm:px-12 py-16 md:py-24 space-y-32 md:space-y-48">
         
         {/* Hero Section */}
-        <section id="start" className="max-w-4xl pt-8">
+        <section id="start" className="max-w-4xl pt-12 md:pt-20">
           <p className="font-mono text-sm uppercase tracking-widest text-accent font-bold mb-6">
             DESIGN DICTIONARY · GOOD TASTE ON DEMAND
           </p>
@@ -547,7 +550,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-bg-secondary border-t border-border-subtle py-16 px-6">
+      <footer className="bg-bg-secondary border-t border-border-subtle py-16 px-6 pb-32 md:pb-40">
         <div className="max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2 space-y-4">
             <div className="font-serif text-xl font-medium">Product Design Dictionary</div>
@@ -558,20 +561,24 @@ export default function App() {
           <div>
             <h4 className="font-medium mb-4">Guides</h4>
             <ul className="space-y-2 text-text-secondary text-sm">
-              <li><a href="#" className="hover:text-text-primary transition-colors">How to talk to AI</a></li>
-              <li><a href="#" className="hover:text-text-primary transition-colors">Platform playbooks</a></li>
+              <li><a href="#" className="hover:text-text-primary focus-visible:ring-2 focus-visible:ring-border-strong rounded transition-colors">How to talk to AI</a></li>
+              <li><a href="#" className="hover:text-text-primary focus-visible:ring-2 focus-visible:ring-border-strong rounded transition-colors">Platform playbooks</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-medium mb-4">Legal</h4>
             <ul className="space-y-2 text-text-secondary text-sm">
-              <li><a href="#" className="hover:text-text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-text-primary transition-colors">Built with React & Tailwind</a></li>
+              <li><a href="#" className="hover:text-text-primary focus-visible:ring-2 focus-visible:ring-border-strong rounded transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-text-primary focus-visible:ring-2 focus-visible:ring-border-strong rounded transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-text-primary focus-visible:ring-2 focus-visible:ring-border-strong rounded transition-colors">Built with React & Tailwind</a></li>
             </ul>
           </div>
         </div>
       </footer>
+
+      <div aria-live="polite" className="sr-only">
+         {ariaMessage}
+      </div>
 
       <PromptBuilderBar 
         selectionCount={selectedIds.length}

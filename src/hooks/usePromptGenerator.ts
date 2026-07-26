@@ -27,15 +27,23 @@ export function usePromptGenerator(selectedIds: string[]) {
     const getFragments = (categoryList: string[]) => 
       selectedOptions.filter(o => categoryList.includes(o.category)).map(o => o.promptFragment);
 
-    const bType = getFragments(['buildType'])[0] || 'website';
+    // Helper to format arrays nicely
+    const formatList = (items: string[]) => {
+      if (items.length === 0) return '';
+      if (items.length === 1) return items[0];
+      if (items.length === 2) return `${items[0]} and ${items[1]}`;
+      return `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`;
+    };
+
+    const bType = getFragments(['buildType'])[0] || 'web application';
     
-    let prompt = `Design a responsive ${bType} for a target user.\n\n`;
+    let prompt = `Design a premium, production-ready ${bType} for a target user.\n\n`;
 
     const styleFrags = getFragments(['style']);
     if (styleFrags.length > 0) {
       prompt += `Use ${styleFrags[0]} as the dominant visual direction`;
       if (styleFrags.length > 1) {
-        prompt += `, supported by ${styleFrags[1]}`;
+        prompt += `, supported by a ${styleFrags[1]} aesthetic`;
       }
       prompt += '.\n';
     }
@@ -43,9 +51,9 @@ export function usePromptGenerator(selectedIds: string[]) {
     const themeFrags = getFragments(['theme']);
     const colorMoodFrags = getFragments(['colorMood', 'colorGradient', 'colorVocab']);
     if (themeFrags.length > 0 || colorMoodFrags.length > 0) {
-      prompt += `Apply a ${themeFrags[0] || 'suitable theme'}. `;
+      prompt += `Establish a ${themeFrags[0] || 'balanced'} theme. `;
       if (colorMoodFrags.length > 0) {
-        prompt += `Use ${colorMoodFrags.join(', ')}.\n`;
+        prompt += `The palette should feature ${formatList(colorMoodFrags)}.\n`;
       } else {
         prompt += '\n';
       }
@@ -53,52 +61,52 @@ export function usePromptGenerator(selectedIds: string[]) {
 
     const typeFrags = getFragments(['typography', 'typeVocab']);
     if (typeFrags.length > 0) {
-      prompt += `Use ${typeFrags.join(' and ')}.\n\n`;
+      prompt += `For typography, use ${formatList(typeFrags)}.\n\n`;
     }
 
     const layoutFrags = getFragments(['layout']);
     if (layoutFrags.length > 0) {
-      prompt += `Structure the page using a ${layoutFrags.join(' and ')}.\n`;
+      prompt += `Structure the page using a ${formatList(layoutFrags)}.\n`;
     }
 
     const compFrags = getFragments(['button', 'corner', 'shadow']);
     if (compFrags.length > 0) {
-      prompt += `Components should use ${compFrags.join(', ')}.\n`;
+      prompt += `Components should be styled with ${formatList(compFrags)}.\n`;
     }
 
     const motionFrags = getFragments(['motion']);
     if (motionFrags.length > 0) {
-      prompt += `Motion should feature ${motionFrags.join(', ')}.\n`;
+      prompt += `Motion and interactions should feature ${formatList(motionFrags)}.\n`;
     }
 
     const spaceFrags = getFragments(['spacing', 'spacingVocab']);
     if (spaceFrags.length > 0) {
-      prompt += `Maintain ${spaceFrags.join(' and ')}.\n`;
+      prompt += `Maintain ${formatList(spaceFrags)} throughout the interface.\n`;
     }
 
     const imageryFrags = getFragments(['imagery']);
     if (imageryFrags.length > 0) {
-      prompt += `Use ${imageryFrags.join(', ')}.\n`;
+      prompt += `For visuals, rely on ${formatList(imageryFrags)}.\n`;
     }
     
     prompt += '\n';
 
     const voiceFrags = getFragments(['voice']);
     if (voiceFrags.length > 0) {
-      prompt += `The voice should feel ${voiceFrags.join(' and ')}.\n`;
+      prompt += `The tone of the copywriting should feel ${formatList(voiceFrags)}.\n`;
     }
 
     const principleFrags = getFragments(['voicePrinciple']);
     if (principleFrags.length > 0) {
-      prompt += `Prioritize: ${principleFrags.join(', ')}.\n`;
+      prompt += `Key design principles to prioritize: ${formatList(principleFrags)}.\n`;
     }
 
     const avoidFrags = getFragments(['voiceAvoid']);
     if (avoidFrags.length > 0) {
-      prompt += `Avoid ${avoidFrags.join(', ')}.\n`;
+      prompt += `Strictly avoid ${formatList(avoidFrags)}.\n`;
     }
 
-    prompt += '\nThe result must be mobile-first, accessible to WCAG AA, fully responsive, visually consistent, and production-ready.';
+    prompt += '\nThe result must be mobile-first, strictly accessible to WCAG AA standards, fully responsive, visually consistent, and entirely production-ready.';
 
     return prompt.trim();
   }, [selectedIds]);

@@ -17,10 +17,10 @@ export function SelectableCard({ id, name, description, examples, selected, onTo
     <button
       onClick={() => onToggle(id)}
       className={cn(
-        "group relative flex flex-col items-start w-full text-left p-6 rounded-2xl border transition-all duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+        "group relative flex flex-col items-start w-full text-left p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
         "hover:-translate-y-1",
         selected 
-          ? "bg-selection-bg text-selection-text border-transparent shadow-lg" 
+          ? "bg-selection-bg text-selection-text border-transparent shadow-xl ring-2 ring-accent ring-offset-2 ring-offset-bg-main" 
           : "bg-bg-secondary text-text-primary border-border-subtle hover:border-border-strong hover:shadow-md"
       )}
       aria-pressed={selected}
