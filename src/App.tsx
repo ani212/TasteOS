@@ -27,6 +27,10 @@ import { RecipeCard } from './components/RecipeCard';
 import { ResourceCard } from './components/ResourceCard';
 import { PromptBuilderBar } from './components/PromptBuilderBar';
 import { PromptDrawer } from './components/PromptDrawer';
+import { KeywordMarquee } from './components/KeywordMarquee';
+import { HowToPrompt } from './components/HowToPrompt';
+import { SkillsDirectory } from './components/SkillsDirectory';
+import { PlatformPlaybooks } from './components/PlatformPlaybooks';
 
 const SECTIONS = [
   { id: 'start', title: 'Start' },
@@ -41,6 +45,9 @@ const SECTIONS = [
   { id: 'imagery', title: 'Imagery' },
   { id: 'voice', title: 'Voice' },
   { id: 'recipes', title: 'Recipes' },
+  { id: 'prompting', title: 'Prompting' },
+  { id: 'skills', title: 'Skills' },
+  { id: 'workflows', title: 'Workflows' },
   { id: 'inspiration', title: 'Inspiration' },
   { id: 'glossary', title: 'Glossary' }
 ];
@@ -228,6 +235,12 @@ export default function App() {
           </div>
         </section>
 
+      </main>
+
+      <KeywordMarquee />
+
+      <main className="max-w-[1240px] mx-auto px-6 sm:px-12 py-16 md:py-24 space-y-32 md:space-y-48">
+        
         {/* 00 - What are you building? */}
         <section className="space-y-8">
           <div className="space-y-2">
@@ -505,6 +518,13 @@ export default function App() {
             ))}
           </div>
         </section>
+
+        <div id="prompting">
+          <HowToPrompt />
+        </div>
+
+        <SkillsDirectory />
+        <PlatformPlaybooks />
 
         {/* 15 - Inspiration */}
         <section id="inspiration" className="space-y-8 pt-12 border-t border-border-subtle">
