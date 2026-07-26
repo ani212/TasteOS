@@ -1,5 +1,7 @@
 # TasteOS
 
+**Live Site:** [https://taste-os-eight.vercel.app/](https://taste-os-eight.vercel.app/)
+
 **The Operating System for Product Taste**
 
 TasteOS is an AI-powered design intelligence platform built for Product Managers, founders, designers, and developers who use AI to build digital products.
